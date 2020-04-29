@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multi select</title>
+</head>
+<body>
+    <h1>select multiple records</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="multi">Fav Foods</label>
+        <select name="multi" id="multi" multiple>
+            <option value="Dosa">Dosa</option>
+            <option value="Biryani">Biryani</option>
+            <option value="Kabab">Kabab</option>
+            <option value="Gobi">Gobi</option>
+        </select><br>
+        Idli<input type="checkbox" name="food" id="food" value="Idli"><br>
+        Dosa<input type="checkbox" name="food" id="food" value="Dosa"><br>
+        Poori<input type="checkbox" name="food" id="food" value="Poori"><br>
+        Bajji<input type="checkbox" name="food" id="food" value="Bajji"><br>
+        Coffee<input type="checkbox" name="food" id="food" value="coffee"><br>
+        
+
+        <input type="submit" value="submit">
+    </form>
+
+</body>
+</html>
