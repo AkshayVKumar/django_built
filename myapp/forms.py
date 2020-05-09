@@ -2,7 +2,7 @@ from django import forms
 from django.core import validators
 from myapp.models import Image_upload
 from django.contrib.auth.models import User
-
+from myapp.models import UserProfile
 
 
 choices=(('1','Male'),('2','Female'))
@@ -62,8 +62,16 @@ class ImgForm(forms.ModelForm):
         model=Image_upload
         fields='__all__'
 
+# class Register_user(forms.ModelForm):
+#     password=forms.CharField(max_length=15,widget=forms.PasswordInput)
+#     class Meta:
+#         model=User
+#         fields=('first_name','last_name','username','email','password')
+
 class Register_user(forms.ModelForm):
-    password=forms.CharField(max_length=15,widget=forms.PasswordInput)
+    #dob=forms.DateField(input_formats=["%d/%m/%Y"])
+    password=password=forms.CharField(max_length=15,widget=forms.PasswordInput)
     class Meta:
-        model=User
-        fields=('first_name','last_name','username','email','password')
+        model=UserProfile
+        fields=('email','first_name','last_name',\
+            'gender','profile_pic')

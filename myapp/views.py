@@ -64,8 +64,10 @@ def img_db(request):
 
 def register_user(request):
     if request.method=='POST':
-        form=Register_user(request.POST)
+        form=Register_user(request.POST,request.FILES)
+        print("hello")
         if form.is_valid():
+            print("hai ")
             user=form.save(commit=False)
             password=form.cleaned_data['password']
             user.set_password(password)
