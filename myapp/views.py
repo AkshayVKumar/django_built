@@ -4,6 +4,7 @@ from myapp.forms import *
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from myapp.models import Image_upload
+
 # Create your views here.
 def index(request):
     return HttpResponse("<h1>welcome to index</h1>")
@@ -72,5 +73,40 @@ def register_user(request):
             password=form.cleaned_data['password']
             user.set_password(password)
             user.save()
+            return redirect('myapp:home')
     form=Register_user()
     return render(request,'sam_form.html',{'form':form})
+
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+def homepage(request):
+    return render(request,"base.html")
+
+def user_login(request):
+    if request.method=="POST":
+        email=request.POST['email']
+        password=request.POST['password']
+        user=authenticate(email=email,password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                print("login successful")
+                return redirect('myapp:home')
+            else:
+                print("user is inactive")
+                return redirect('myapp:home')
+        else:
+            return HttpResponse("Login Unsuccessful")
+    return render(request,"user_login.html")
+
+@login_required
+def sample(request):
+    return HttpResponse("user is logged in")
+
+def user_logout(request):
+    logout(request)
+    return redirect('myapp:home')
+    #return redirect('url mapping name')
+    #return redirect('appname:mappingname')

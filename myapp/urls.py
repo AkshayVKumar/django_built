@@ -12,4 +12,8 @@ urlpatterns = [
     path('img/',views.img_mod,name="img"),
     path('images/',views.img_db,name='img_db'),
     path('register/',views.register_user,name="register"),
+    path('home/',views.homepage,name="home"),
+    path(r'^login/$',views.user_login,name='login'),
+    path('logout/',views.user_logout,name="logout"),
+    path('sample/',views.sample,name="sample"),
 ]
